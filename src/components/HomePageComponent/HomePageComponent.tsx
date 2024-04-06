@@ -72,7 +72,7 @@ export const HomePageComponent: React.FC = () => {
                 <div className="container-left-top">
 
                     <p>Your balance</p>
-                    <h1>$ {getActualBalance()}</h1>
+                    <h1>€ {getActualBalance()}</h1>
 
                 </div>
 

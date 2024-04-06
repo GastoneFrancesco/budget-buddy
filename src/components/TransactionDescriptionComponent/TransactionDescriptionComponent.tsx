@@ -19,7 +19,7 @@ export const TransactionDescriptionComponent: React.FC<TransactionDescriptionCom
         if (iconDefinition) {
             return ['fab', iconName] as [IconPrefix, IconName];
         } else {
-            return 'dollar-sign';
+            return 'euro-sign';
         }
     }
     

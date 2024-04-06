@@ -49,7 +49,7 @@ export const TransactionsTableComponent: React.FC<TransactionsTableComponentProp
             <tr key={index}>
               <td><TransactionDescriptionComponent description={transaction.description} /></td>
               <td className={transaction.amount >= 0 ? "positive-amount" : "negative-amount"}>
-                {transaction.amount.toFixed(2)} $
+                {transaction.amount.toFixed(2)} €
               </td>
               <td className="table-category">
                 <div style={{
