@@ -1,0 +1,55 @@
+.table-component {
+    border-collapse: collapse;
+    width: 96%;
+    margin: 20px auto 20px auto;
+    white-space: nowrap;
+}
+
+.table-component thead {
+    text-align: left;
+}
+
+.table-component th {
+    font-size: 14px;
+    font-weight: 100;
+    border-bottom: 1px solid #34508f;
+    padding: 10px;
+}
+
+.table-component tbody tr td {
+    font-size: 16px;
+    font-weight: 100;
+    padding: 10px;
+    border-bottom: 1px solid #34508f;
+}
+
+.positive-amount {
+    color: rgb(56, 255, 63);
+}
+
+.negative-amount {
+    color: rgb(255, 56, 56);
+}
+
+.table-category {
+    text-align: center;
+}
+
+.table-category p {
+    font-weight: 600;
+}
+
+.button-elimina {
+    margin-inline: 0.4vh;
+    width: fit-content;
+    height: 3vh;
+    background-color: #0F172A;
+    border: 1px solid rgb(255, 0, 0);
+    color: white;
+    white-space: nowrap;
+}
+
+.button-elimina:hover {
+    background-color: rgb(255, 0, 0);
+    cursor: pointer;
+}
