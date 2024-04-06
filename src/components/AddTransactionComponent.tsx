@@ -8,14 +8,14 @@ interface AddTransactionComponentProps {
 
 export const AddTransactionComponent: React.FC<AddTransactionComponentProps> = ({ setTransactionArray }) => {
 
-    const [description, setDescription] = useState('');
-    const [amount, setAmount] = useState(0);
-    const [category, setCategory] = useState('');
+    const [description, setDescription] = useState<string>();
+    const [amount, setAmount] = useState<number>();
+    const [category, setCategory] = useState<string>();
     const [date, setDate] = useState(new Date());
 
     const createNewTransaction = (): void => {
 
-        if(!description || !amount || !category || !date) {
+        if (!description || !amount || !category || !date) {
             alert("Missing datas")
             return;
         }
@@ -24,7 +24,7 @@ export const AddTransactionComponent: React.FC<AddTransactionComponentProps> = (
 
         const newTransaction: Transaction = {
             description: description,
-            amount: amount,
+            amount: category === 'Income' ? amount : -amount,
             category: category,
             date: parsedDate
         };
@@ -48,38 +48,54 @@ export const AddTransactionComponent: React.FC<AddTransactionComponentProps> = (
         localStorage.setItem('transactionArray', JSON.stringify(sortedTransactions));
     };
 
+    const reset = (): void => {
+        setDescription('');
+        setAmount(undefined);
+        setCategory('');
+        setDate(new Date())
+    }
+
     return (
         <div className='setter-container'>
 
-            <p>Description</p>
-            <input
-                type="text"
-                onChange={e => setDescription(e.target.value)}
-                placeholder="Enter data" />
+            <p>Add Transaction</p>
 
-            <p>Amount</p>
-            <input
-                type="text"
-                onChange={e => setAmount(parseFloat(e.target.value))}
-                placeholder="Enter data" />
+            <div className="form-group">
+                <span>Description</span>
+                <input className="form-field" type="text"
+                    value={description}
+                    onChange={e => setDescription(e.target.value)} />
+            </div>
 
-            <p>Category</p>
-            <select onChange={e => setCategory(e.target.value as string)}>
-                <option value="">Select category</option>
-                {Array.from(DefaultCategories.keys()).map(category => (
-                    <option key={category} value={category}>{category}</option>
-                ))}
-            </select>
+            <div className="form-group">
+                <span>€</span>
+                <input className="form-field" type="number"
+                    value={amount !== undefined ? amount : ''}
+                    onChange={e => setAmount(parseFloat(e.target.value))} />
+            </div>
 
-            <p>Date</p>
-            <input
-                type="date"
-                value={date.toISOString().split('T')[0]}
-                onChange={e => setDate(new Date(e.target.value))}
-                placeholder="Enter data" />
+            <div className="form-group">
+                <span>Category</span>
+                <select className="form-field" value={category !== undefined ? category : ''} onChange={e => setCategory(e.target.value as string)}>
+                    <option value="">---</option>
+                    {Array.from(DefaultCategories.keys()).map(category => (
+                        <option key={category} value={category}>{category}</option>
+                    ))}
+                </select>
+            </div>
+
+
+            <div className="form-group">
+                <span>Date</span>
+                <input className="form-field" type="date"
+                    value={date.toISOString().split('T')[0]}
+                    onChange={e => setDate(new Date(e.target.value))} />
+            </div>
 
             <div className="buttons-container">
-                <button className="button" onClick={createNewTransaction}>Aggiungi</button>
+                <button className="button" onClick={createNewTransaction}>Add</button>
+                <button className="button" onClick={reset}>Reset</button>
+
             </div>
         </div>
 

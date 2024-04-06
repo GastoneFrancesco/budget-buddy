@@ -18,7 +18,7 @@ export const TransactionsTableComponent: React.FC<TransactionsTableComponentProp
     const rgbColor = hexToRgb(color);
 
     // Calculate lighter shade (increase brightness)
-    const lighten = (value: number) => Math.min(255, value + 50);
+    const lighten = (value: number) => Math.min(255, value + 150);
 
     // Apply lightening to each RGB component
     const lighterRgb = rgbColor.map(lighten);
