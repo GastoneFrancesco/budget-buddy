@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import './style.css'
-import { GraphComponent } from "../GraphComponent/GraphComponent";
-import { TransactionsTableComponent } from "../TransactionsTableComponent/TransactionsTableComponent";
-import { Transaction } from "../../interfaces/Transaction";
-import { AddTransactionComponent } from "../AddTransactionComponent/AddTransactionComponent";
+import { GraphComponent } from "./GraphComponent";
+import { TransactionsTableComponent } from "./TransactionsTableComponent";
+import { Transaction } from "../interfaces/Transaction";
+import { AddTransactionComponent } from "./AddTransactionComponent";
 
 export const HomePageComponent: React.FC = () => {
 

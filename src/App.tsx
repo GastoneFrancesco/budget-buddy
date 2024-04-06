@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import { HomePageComponent } from './components/HomePageComponent/HomePageComponent';
-import { FooterComponent } from './components/FooterComponent/FooterComponent';
+import { HomePageComponent } from './components/HomePageComponent';
+import { FooterComponent } from './components/FooterComponent';
 
 function App() {
   return (

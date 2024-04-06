@@ -1,8 +1,7 @@
 import React from "react";
-import './style.css';
-import { Transaction } from "../../interfaces/Transaction";
-import { TransactionDescriptionComponent } from "../TransactionDescriptionComponent/TransactionDescriptionComponent";
-import { DefaultCategories } from "../../config/DefaultCategories";
+import { Transaction } from "../interfaces/Transaction";
+import { TransactionDescriptionComponent } from "./TransactionDescriptionComponent";
+import { DefaultCategories } from "../config/DefaultCategories";
 
 interface TransactionsTableComponentProps {
   list: Transaction[];

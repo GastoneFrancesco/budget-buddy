@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { Transaction } from "../../interfaces/Transaction";
-import './style.css'
-import { DefaultCategories } from "../../config/DefaultCategories";
+import { Transaction } from "../interfaces/Transaction";
+import { DefaultCategories } from "../config/DefaultCategories";
 
 interface AddTransactionComponentProps {
     setTransactionArray: (transactions: Transaction[]) => void;

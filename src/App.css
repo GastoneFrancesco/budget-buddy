@@ -1,3 +1,182 @@
 body {
   background-color: #090909
 }
+
+.button {
+  margin-inline: 0.4vh;
+  width: fit-content;
+  height: 3vh;
+  background-color: #0F172A;
+  border: 1px solid aqua;
+  color: white;
+  white-space: nowrap;
+  margin-top: 20px;
+}
+
+.button:hover {
+  background-color: aqua;
+  color: #0F172A;
+  cursor: pointer;
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #0f172a;
+  color: white;
+  height: 100px;
+  font-size: 14px;
+}
+
+.footer-left {
+  display: flex;
+  justify-self: start;
+  margin: auto 20px;
+}
+
+.social-links {
+  margin-left: 20px;
+}
+
+.social-links a {
+  margin-right: 10px;
+}
+
+.social-links svg {
+  color: white;
+}
+
+.footer-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-self: end;
+  margin-right: 20px;
+}
+
+.footer-right p:last-of-type {
+  margin-top: -8px;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  margin: 10px auto;
+  border-radius: 10px;
+  margin-bottom: 120px;
+}
+
+.container-left {
+  width: 70%;
+  margin-inline: 30px;
+  background-color: #0f172a;
+  color: white;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.216);
+  border-radius: 16px;
+
+}
+
+.container-left-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container-left-top p {
+  margin-bottom: -20px;
+}
+
+.container-left-graph {
+  margin-inline: 10px;
+}
+
+.container-left-history {
+  margin: 10px;
+}
+
+.container-right {
+  width: 30%;
+  background-color: #0f172a;
+  ;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.216);
+  border-radius: 16px;
+  text-align: center;
+  color: white;
+}
+
+.description-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.description-container svg {
+  margin-inline-end: 6px;
+}
+
+.table-component {
+  border-collapse: collapse;
+  width: 96%;
+  margin: 20px auto 20px auto;
+  white-space: nowrap;
+}
+
+.table-component thead {
+  text-align: left;
+}
+
+.table-component th {
+  font-size: 14px;
+  font-weight: 100;
+  border-bottom: 1px solid #34508f;
+  padding: 10px;
+}
+
+.table-component tbody tr td {
+  font-size: 16px;
+  font-weight: 100;
+  padding: 10px;
+  border-bottom: 1px solid #34508f;
+}
+
+.positive-amount {
+  color: rgb(56, 255, 63);
+}
+
+.negative-amount {
+  color: rgb(255, 56, 56);
+}
+
+.table-category {
+  text-align: center;
+}
+
+.table-category p {
+  font-weight: 600;
+}
+
+.button-elimina {
+  margin-inline: 0.4vh;
+  width: fit-content;
+  height: 3vh;
+  background-color: #0F172A;
+  border: 1px solid rgb(255, 0, 0);
+  color: white;
+  white-space: nowrap;
+}
+
+.button-elimina:hover {
+  background-color: rgb(255, 0, 0);
+  cursor: pointer;
+}
