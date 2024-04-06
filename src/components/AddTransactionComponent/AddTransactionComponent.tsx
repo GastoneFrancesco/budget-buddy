@@ -43,9 +43,10 @@ export const AddTransactionComponent: React.FC<AddTransactionComponentProps> = (
             updatedTransactions = [newTransaction];
         }
 
-        setTransactionArray(updatedTransactions);
+        const sortedTransactions = updatedTransactions.sort((a, b) => b.date.getTime() - a.date.getTime());
+        setTransactionArray(sortedTransactions);
 
-        localStorage.setItem('transactionArray', JSON.stringify(updatedTransactions));
+        localStorage.setItem('transactionArray', JSON.stringify(sortedTransactions));
     };
 
     return (

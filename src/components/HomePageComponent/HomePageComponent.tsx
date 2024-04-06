@@ -10,16 +10,17 @@ export const HomePageComponent: React.FC = () => {
     const [transactionArray, setTransactionArray] = useState<Transaction[]>([]);
 
     useEffect(() => {
-
         const storedTransactions = localStorage.getItem('transactionArray');
-
+    
         if (storedTransactions) {
-            setTransactionArray(JSON.parse(storedTransactions).map((transaction: { date: string | number | Date; }) => ({
+            const parsedTransactions: Transaction[] = JSON.parse(storedTransactions).map((transaction: { date: string | number | Date; }) => ({
                 ...transaction,
                 date: new Date(transaction.date) // Parse date string into a Date object
-            })));
+            }));
+    
+            const sortedTransactions = parsedTransactions.sort((a, b) => b.date.getTime() - a.date.getTime());
+            setTransactionArray(sortedTransactions);
         }
-
     }, []);
 
     const populateMainBalanceGraph = (): number[] => {
@@ -47,8 +48,11 @@ export const HomePageComponent: React.FC = () => {
     dataValue.set('savings', populateSavingsGraph())
 
     const getActualBalance = (): string => {
-        const actualMonth = new Date().getMonth();
-        return dataValue.get('main-balance')![actualMonth].toFixed(2)
+        let value = 0;
+        transactionArray.forEach(element => {
+            value += element.amount;
+        });
+        return value.toFixed(2)
     }
 
     const deleteFromTransactions = (indexToRemove: number) => {
@@ -82,9 +86,9 @@ export const HomePageComponent: React.FC = () => {
 
                     <p>Transaction history</p>
 
-                    <TransactionsTableComponent 
-                    list={transactionArray} 
-                    deleteAction={deleteFromTransactions}/>
+                    <TransactionsTableComponent
+                        list={transactionArray}
+                        deleteAction={deleteFromTransactions} />
 
                 </div>
 
