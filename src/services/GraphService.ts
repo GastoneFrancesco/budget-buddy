@@ -36,9 +36,9 @@ export class GraphService {
         const labels = GraphService.generateLabels();
         transactionArray.forEach(transaction => {
             labels.forEach((label, index) => {
-                if (GraphService.isDateBetween(transaction.date, GraphService.getDateFromLabel(label, index)[0], GraphService.getDateFromLabel(label, index)[1])) {
-                    const month = GraphService.getDateFromLabel(label, index)[0].getMonth();
-                    values[month] += transaction.amount;
+                const [startDate, endDate] = GraphService.getDateFromLabel(label, index);
+                if (GraphService.isDateBetween(transaction.date, startDate, endDate)) {
+                    values[startDate.getMonth()] += transaction.amount;
                 }
             });
 
@@ -49,10 +49,15 @@ export class GraphService {
 
     static populateSavingsGraph = (transactionArray: Transaction[]): number[] => {
         const values: number[] = Array(12).fill(0);
+        const labels = GraphService.generateLabels();
         transactionArray.forEach(transaction => {
             if (transaction.category === 'Savings') {
-                const month = transaction.date.getMonth();
-                values[month] -= transaction.amount;
+                labels.forEach((label, index) => {
+                    const [startDate, endDate] = GraphService.getDateFromLabel(label, index);
+                    if (GraphService.isDateBetween(transaction.date, startDate, endDate)) {
+                        values[startDate.getMonth()] -= transaction.amount;
+                    }
+                });
             }
         });
         return values;
