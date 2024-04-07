@@ -5,8 +5,8 @@ const { execSync } = require('child_process');
 const gitSha = execSync('git rev-parse HEAD').toString().trim().substring(0, 8);
 
 // Get the current Git commit date (AAAAMMGG)
-const gitDateRaw = execSync('git show -s --format=%ci HEAD').toString().trim();
-const gitDate = new Date(gitDateRaw).toISOString().substring(0, 10).replace(/-/g, '');
+const gitDateRaw = execSync('git show -s --format=%ci --date=local HEAD').toString().trim();
+const gitDate = gitDateRaw.substring(0, 10).replace(/-/g, '');
 
 const envPath = '.env';
 let envContent = '';
