@@ -52,11 +52,18 @@ export const TransactionsTableComponent: React.FC<TransactionsTableComponentProp
               </td>
               <td className="table-category">
                 <div style={{
-                  color: DefaultCategories.get(transaction.category)!,
-                  backgroundColor: lightenColor(DefaultCategories.get(transaction.category)!),
+                  color: DefaultCategories.find(category => category.name === transaction.category)!.color,
+                  backgroundColor: lightenColor(DefaultCategories.find(category => category.name === transaction.category)!.color),
                   paddingInline: 10,
                   borderRadius: 10,
-                  fontWeight: 600
+                  fontWeight: 600,
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  textAlign: 'center',
+                  whiteSpace: 'nowrap',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis'
                 }}> {transaction.category} </div>
               </td>
               <td>{transaction.date.toDateString()}</td>

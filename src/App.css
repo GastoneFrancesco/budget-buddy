@@ -1,5 +1,5 @@
 body {
-  background-color: #090909;
+  background-color: #0d1b39;
 }
 
 .button {
@@ -10,7 +10,6 @@ body {
   height: 30px;
   margin-inline: 4px;
   margin-top: 20px;
-  white-space: nowrap;
   width: 100px;
 }
 
@@ -20,7 +19,6 @@ body {
   color: white;
   cursor: pointer;
   height: 30px;
-  margin-inline: 4px;
   width: 100px;
 }
 
@@ -223,4 +221,30 @@ body {
     width: 90%;
     margin-bottom: 10px;
   }
+  .table-component tbody tr td,
+  .table-component tbody tr th,
+  .table-component thead th,
+  .form-group span, 
+  .form-field,
+  .container-left-history,
+  .setter-container {
+    font-size: 12px;
+  }
+
+  .button-elimina,
+  .button {
+    height: 20px;
+    width: 60px;
+  }
+
+  .footer-container {
+    font-size: 10px;
+    height: 70px;
+  }
+  
+  .footer-left,
+  .footer-right {
+    margin: auto 10px;
+  }
+
 }

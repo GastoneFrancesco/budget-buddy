@@ -78,8 +78,8 @@ export const AddTransactionComponent: React.FC<AddTransactionComponentProps> = (
                 <span>Category</span>
                 <select className="form-field" value={category !== undefined ? category : ''} onChange={e => setCategory(e.target.value as string)}>
                     <option value="">---</option>
-                    {Array.from(DefaultCategories.keys()).map(category => (
-                        <option key={category} value={category}>{category}</option>
+                    {DefaultCategories.map((category, index) => (
+                        <option key={index} value={category.name}>{category.name}</option>
                     ))}
                 </select>
             </div>
