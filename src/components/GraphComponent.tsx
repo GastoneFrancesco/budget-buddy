@@ -72,6 +72,9 @@ export const GraphComponent: React.FC<GraphProps> = ({ dataValue }) => {
                 },
                 ticks: {
                     color: 'rgba(255, 255, 255, 1)', // White color for X-axis tick labels
+                    font: {
+                        size: window.innerWidth < 1000 ? 8 : 12 // Adjust font size based on screen width
+                    }
                 },
             },
             y: {
@@ -80,6 +83,9 @@ export const GraphComponent: React.FC<GraphProps> = ({ dataValue }) => {
                 },
                 ticks: {
                     color: 'rgba(255, 255, 255, 1)', // White color for Y-axis tick labels
+                    font: {
+                        size: window.innerWidth < 1000 ? 8 : 12 // Adjust font size based on screen width
+                    }
                 },
             },
         },
