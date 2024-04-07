@@ -8,7 +8,7 @@ interface AddTransactionComponentProps {
 
 export const AddTransactionComponent: React.FC<AddTransactionComponentProps> = ({ setTransactionArray }) => {
 
-    const [description, setDescription] = useState<string>();
+    const [description, setDescription] = useState<string>('');
     const [amount, setAmount] = useState<number>();
     const [category, setCategory] = useState<string>();
     const [date, setDate] = useState(new Date());

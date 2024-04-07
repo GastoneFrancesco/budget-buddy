@@ -4,6 +4,7 @@ import { TransactionsTableComponent } from "./TransactionsTableComponent";
 import { Transaction } from "../interfaces/Transaction";
 import { AddTransactionComponent } from "./AddTransactionComponent";
 import { GraphService } from "../services/GraphService";
+import { CategoriesTableComponent } from "./CategoriesTableComponent";
 
 export const HomePageComponent: React.FC = () => {
 
@@ -79,6 +80,7 @@ export const HomePageComponent: React.FC = () => {
 
                 <AddTransactionComponent setTransactionArray={setTransactionArray} />
 
+                <CategoriesTableComponent transactions={transactionArray} />
             </div>
 
         </div>

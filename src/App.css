@@ -190,6 +190,11 @@ body {
   max-width: 100%;
   width: 100%;
   table-layout: fixed; /* Add this line to ensure fixed table layout */
+
+  .form-group span {
+    min-width: 10px;
+  }
+  
 }
 
 .table-component tbody tr td {
@@ -197,6 +202,7 @@ body {
   font-size: 16px;
   font-weight: 100;
   padding: 10px;
+  text-align: start;
 }
 
 .table-component th {

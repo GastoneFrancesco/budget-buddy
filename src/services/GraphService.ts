@@ -2,7 +2,7 @@ import { Transaction } from "../interfaces/Transaction";
 
 export class GraphService {
 
-    static generateLabels(): string[] {
+    static generateLabels = () : string[] => {
 
         //TODO: make this updatable
         const startDay = 10;
@@ -31,11 +31,12 @@ export class GraphService {
         return labels;
     }
 
+    static labels = GraphService.generateLabels();
+
     static populateMainBalanceGraph = (transactionArray: Transaction[]): number[] => {
         const values: number[] = Array(12).fill(0);
-        const labels = GraphService.generateLabels();
         transactionArray.forEach(transaction => {
-            labels.forEach((label, index) => {
+            GraphService.labels.forEach((label, index) => {
                 const [startDate, endDate] = GraphService.getDateFromLabel(label, index);
                 if (GraphService.isDateBetween(transaction.date, startDate, endDate)) {
                     values[startDate.getMonth()] += transaction.amount;
@@ -49,10 +50,9 @@ export class GraphService {
 
     static populateSavingsGraph = (transactionArray: Transaction[]): number[] => {
         const values: number[] = Array(12).fill(0);
-        const labels = GraphService.generateLabels();
         transactionArray.forEach(transaction => {
             if (transaction.category === 'Savings') {
-                labels.forEach((label, index) => {
+                GraphService.labels.forEach((label, index) => {
                     const [startDate, endDate] = GraphService.getDateFromLabel(label, index);
                     if (GraphService.isDateBetween(transaction.date, startDate, endDate)) {
                         values[startDate.getMonth()] -= transaction.amount;
@@ -61,6 +61,23 @@ export class GraphService {
             }
         });
         return values;
+    }
+
+    static getCurrentCategoryBalance = (transactionArray: Transaction[], categoryName: string): number => {
+        let value = 0;
+        const currentDate = new Date();
+        GraphService.labels.forEach((label, index) => {
+            const [startDate, endDate] = GraphService.getDateFromLabel(label, index);
+            if (GraphService.isDateBetween(currentDate, startDate, endDate)) {
+                transactionArray.forEach(element => {
+                    if (GraphService.isDateBetween(element.date, startDate, endDate) && element.category === categoryName) {
+                        value += element.amount;
+                    }
+                });
+                return value;
+            }
+        });
+        return value;
     }
 
     private static getDateFromLabel(inputString: string, index: number): [Date, Date] {
