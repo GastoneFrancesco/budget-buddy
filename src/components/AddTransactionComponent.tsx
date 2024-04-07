@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Transaction } from "../interfaces/Transaction";
 import { DefaultCategories } from "../config/DefaultCategories";
+import { LanguageService } from "../services/LanguageService";
 
 interface AddTransactionComponentProps {
     setTransactionArray: (transactions: Transaction[]) => void;
@@ -79,7 +80,7 @@ export const AddTransactionComponent: React.FC<AddTransactionComponentProps> = (
                 <select className="form-field" value={category !== undefined ? category : ''} onChange={e => setCategory(e.target.value as string)}>
                     <option value="">---</option>
                     {DefaultCategories.map((category, index) => (
-                        <option key={index} value={category.name}>{category.name}</option>
+                        <option key={index} value={category.name}>{LanguageService.categoryNameToItalian(category.name)}</option>
                     ))}
                 </select>
             </div>

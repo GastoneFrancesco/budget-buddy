@@ -3,6 +3,7 @@ import { Transaction } from "../interfaces/Transaction";
 import { TransactionDescriptionComponent } from "./TransactionDescriptionComponent";
 import { DefaultCategories } from "../config/DefaultCategories";
 import { CategoryService } from "../services/CategoryService";
+import { LanguageService } from "../services/LanguageService";
 
 interface TransactionsTableComponentProps {
   list: Transaction[];
@@ -46,7 +47,7 @@ export const TransactionsTableComponent: React.FC<TransactionsTableComponentProp
                   whiteSpace: 'nowrap',
                   overflow: 'hidden',
                   textOverflow: 'ellipsis'
-                }}> {transaction.category} </div>
+                }}> {LanguageService.categoryNameToItalian(transaction.category)} </div>
               </td>
               <td>{transaction.date.toDateString()}</td>
               <td><button className="button-elimina" onClick={e => deleteAction(index)}>Delete</button>

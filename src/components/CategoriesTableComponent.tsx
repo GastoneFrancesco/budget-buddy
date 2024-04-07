@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { DefaultCategories } from "../config/DefaultCategories";
-import { Category } from "../interfaces/Category";
 import { Transaction } from "../interfaces/Transaction";
 import { GraphService } from "../services/GraphService";
 import { CategoryService } from "../services/CategoryService";
+import { LanguageService } from "../services/LanguageService";
 
 interface CategoriesTableComponentProps {
   transactions: Transaction[];
@@ -84,7 +84,7 @@ export const CategoriesTableComponent: React.FC<CategoriesTableComponentProps> =
                       whiteSpace: 'nowrap',
                       overflow: 'hidden',
                       textOverflow: 'ellipsis'
-                    }}> {category.name} </div>
+                    }}> {LanguageService.categoryNameToItalian(category.name)} </div>
                   </td>
                   <td>{category.budgetAmount + balances[index]} €</td>
                   <td>
