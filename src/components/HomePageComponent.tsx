@@ -3,6 +3,7 @@ import { GraphComponent } from "./GraphComponent";
 import { TransactionsTableComponent } from "./TransactionsTableComponent";
 import { Transaction } from "../interfaces/Transaction";
 import { AddTransactionComponent } from "./AddTransactionComponent";
+import { GraphService } from "../services/GraphService";
 
 export const HomePageComponent: React.FC = () => {
 
@@ -10,41 +11,22 @@ export const HomePageComponent: React.FC = () => {
 
     useEffect(() => {
         const storedTransactions = localStorage.getItem('transactionArray');
-    
+
         if (storedTransactions) {
             const parsedTransactions: Transaction[] = JSON.parse(storedTransactions).map((transaction: { date: string | number | Date; }) => ({
                 ...transaction,
                 date: new Date(transaction.date) // Parse date string into a Date object
             }));
-    
+
             const sortedTransactions = parsedTransactions.sort((a, b) => b.date.getTime() - a.date.getTime());
             setTransactionArray(sortedTransactions);
         }
+
     }, []);
 
-    const populateMainBalanceGraph = (): number[] => {
-        const values: number[] = Array(12).fill(0);
-        transactionArray.forEach(transaction => {
-            const month = transaction.date.getMonth();
-            values[month] += transaction.amount;
-        });
-        return values;
-    }
-
-    const populateSavingsGraph = (): number[] => {
-        const values: number[] = Array(12).fill(0);
-        transactionArray.forEach(transaction => {
-            if (transaction.category === 'Savings') {
-                const month = transaction.date.getMonth();
-                values[month] -= transaction.amount;
-            }
-        });
-        return values;
-    }
-
     const dataValue = new Map<string, number[]>();
-    dataValue.set('main-balance', populateMainBalanceGraph())
-    dataValue.set('savings', populateSavingsGraph())
+    dataValue.set('main-balance', GraphService.populateMainBalanceGraph(transactionArray))
+    dataValue.set('savings', GraphService.populateSavingsGraph(transactionArray))
 
     const getActualBalance = (): string => {
         let value = 0;

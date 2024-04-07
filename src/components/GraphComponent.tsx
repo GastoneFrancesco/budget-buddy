@@ -10,7 +10,8 @@ import {
     Tooltip,
     Filler,
     Legend,
-  } from 'chart.js';
+} from 'chart.js';
+import { GraphService } from '../services/GraphService';
 
 interface GraphProps {
     dataValue: Map<string, number[]>;
@@ -27,9 +28,9 @@ export const GraphComponent: React.FC<GraphProps> = ({ dataValue }) => {
         Tooltip,
         Filler,
         Legend
-      );
+    );
 
-    const labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const labels = GraphService.generateLabels();
 
     const options = {
         responsive: true,
@@ -61,7 +62,7 @@ export const GraphComponent: React.FC<GraphProps> = ({ dataValue }) => {
             },
         },
     };
-    
+
     const data = {
         labels,
         datasets: [
