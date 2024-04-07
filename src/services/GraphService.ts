@@ -2,13 +2,20 @@ import { Transaction } from "../interfaces/Transaction";
 
 export class GraphService {
 
-    static generateLabels = () : string[] => {
+    private static isLeapYear = (year: number): boolean => {
+        return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
+    }
+
+    static generateLabels = (): string[] => {
 
         //TODO: make this updatable
-        const startDay = 10;
+        const storedStartDay = localStorage.getItem('monthStartDay');
+        const startDay: number = storedStartDay === null ? 1 : parseInt(storedStartDay);
+        const year: number = new Date().getFullYear(); // Get the current year
 
         // Define a dictionary to map month numbers to month names
         const monthNames: string[] = ['Gen', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        const months30: string[] = ['Nov', 'Apr', 'Jun', 'Sep'];
 
         // Define an array to store the labels
         const labels: string[] = [];
@@ -18,14 +25,28 @@ export class GraphService {
             // Calculate start and end days based on input
             const startMonthIndex = i;
             const startMonthName = monthNames[startMonthIndex];
-            const endMonthIndex = (startMonthIndex + 1) % 12;
+            const endMonthIndex = startDay === 1 ? startMonthIndex : (startMonthIndex + 1) % 12;
             const endMonthName = monthNames[endMonthIndex];
 
-            const endDay = startDay - 1; // End day of the label
+            const endDay = startDay === 1
+                ? startMonthName === 'Feb'
+                    ? GraphService.isLeapYear(year) === true
+                        ? 29
+                        : 28
+                    : months30.includes(startMonthName)
+                        ? 30
+                        : 31
+                : startDay - 1; // End day of the label
+
+            const startDayFormatted = startDay < 10 ? '0' + startDay : String(startDay); // Formatting end day
             const endDayFormatted = endDay < 10 ? '0' + endDay : String(endDay); // Formatting end day
 
             // Add label to the array
-            labels.push(`${startDay} ${startMonthName} - ${endDayFormatted} ${endMonthName}`);
+            if (i === 11 && startDay !== 1) {
+                labels.push(`${startDayFormatted} ${startMonthName} - ${endDayFormatted} ${endMonthName} ${year + 1}`);
+            } else {
+                labels.push(`${startDayFormatted} ${startMonthName} - ${endDayFormatted} ${endMonthName}`);
+            }
         }
 
         return labels;

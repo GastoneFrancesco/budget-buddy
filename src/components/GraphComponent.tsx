@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import {
     Chart as ChartJS,
@@ -19,6 +19,9 @@ interface GraphProps {
 
 export const GraphComponent: React.FC<GraphProps> = ({ dataValue }) => {
 
+    const [monthStartDay, setMonthStartDay] = useState<number | ''>('');
+    const [labels, setLabels] = useState<string[]>([])
+
     ChartJS.register(
         CategoryScale,
         LinearScale,
@@ -30,7 +33,26 @@ export const GraphComponent: React.FC<GraphProps> = ({ dataValue }) => {
         Legend
     );
 
-    const labels = GraphService.generateLabels();
+    useEffect(() => {
+        const storedStartDay = localStorage.getItem('monthStartDay');
+        const startDay: number = storedStartDay === null ? 1 : parseInt(storedStartDay);
+        setMonthStartDay(startDay);
+        setLabels(GraphService.generateLabels());
+
+    }, []);
+
+    const handleMonthStartDayChange = (value: string): void => {
+        const parsedValue = parseInt(value);
+        if (!isNaN(parsedValue)) {
+            setMonthStartDay(parsedValue);
+            localStorage.setItem('monthStartDay', JSON.stringify(parsedValue));
+            setLabels(GraphService.generateLabels());
+        } else {
+            //Else used to determinate when the user delete all the numbers
+            setMonthStartDay('');
+            localStorage.removeItem('monthStartDay');
+        }
+    }
 
     const options = {
         responsive: true,
@@ -84,6 +106,9 @@ export const GraphComponent: React.FC<GraphProps> = ({ dataValue }) => {
     };
 
     return (
-        <Line options={options} data={data} />
+        <>
+            <Line options={options} data={data} />
+            <input type='number' value={monthStartDay} onChange={e => handleMonthStartDayChange(e.target.value)} />
+        </>
     );
 };
