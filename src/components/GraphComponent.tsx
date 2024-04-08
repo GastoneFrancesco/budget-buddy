@@ -52,6 +52,10 @@ export const GraphComponent: React.FC<GraphProps> = ({ dataValue }) => {
             setMonthStartDay('');
             localStorage.removeItem('monthStartDay');
         }
+    
+        setTimeout(() => {
+            window.location.reload();
+        }, 1000); // 1 Second Delay
     }
 
     const options = {
