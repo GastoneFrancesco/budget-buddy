@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import { Transaction } from "../interfaces/Transaction";
 import { DefaultCategories } from "../config/DefaultCategories";
-import { LanguageService } from "../services/LanguageService";
+import { Transaction } from "../interfaces/Transaction";
+import { DateComponent } from "./DateComponent";
+import { DropDownComponent } from "./DropDownComponent";
+import { InputTextComponent } from "./InputTextComponent";
 
 interface AddTransactionComponentProps {
     setTransactionArray: (transactions: Transaction[]) => void;
 }
-
 export const AddTransactionComponent: React.FC<AddTransactionComponentProps> = ({ setTransactionArray }) => {
 
     const [description, setDescription] = useState<string>('');
@@ -61,37 +62,15 @@ export const AddTransactionComponent: React.FC<AddTransactionComponentProps> = (
 
             <p>Add Transaction</p>
 
-            <div className="form-group">
-                <span>Description</span>
-                <input className="form-field" type="text"
-                    value={description}
-                    onChange={e => setDescription(e.target.value)} />
-            </div>
+            <InputTextComponent title="Description" value={description} onChange={setDescription} />
 
-            <div className="form-group">
-                <span>€</span>
-                <input className="form-field" type="number"
-                    value={amount !== undefined ? amount : ''}
-                    onChange={e => setAmount(parseFloat(e.target.value))} />
-            </div>
+            <InputTextComponent title="€" value={amount} onChange={setAmount} />
 
-            <div className="form-group">
-                <span>Category</span>
-                <select className="form-field" value={category !== undefined ? category : ''} onChange={e => setCategory(e.target.value as string)}>
-                    <option value="">---</option>
-                    {DefaultCategories.map((category, index) => (
-                        <option key={index} value={category.name}>{LanguageService.categoryNameToItalian(category.name)}</option>
-                    ))}
-                </select>
-            </div>
+            <DropDownComponent title="Category" value={category}
+            setValue={setCategory} options={DefaultCategories}
+            optionLabel="name"/>
 
-
-            <div className="form-group">
-                <span>Date</span>
-                <input className="form-field" type="date"
-                    value={date.toISOString().split('T')[0]}
-                    onChange={e => setDate(new Date(e.target.value))} />
-            </div>
+            <DateComponent title="Date" date={date} setDate={setDate} />
 
             <div className="buttons-container">
                 <button className="button" onClick={createNewTransaction}>Add</button>

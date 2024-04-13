@@ -12,6 +12,7 @@ import {
     Legend,
 } from 'chart.js';
 import { GraphService } from '../services/GraphService';
+import { InputTextComponent } from './InputTextComponent';
 
 interface GraphProps {
     dataValue: Map<string, number[]>;
@@ -52,7 +53,7 @@ export const GraphComponent: React.FC<GraphProps> = ({ dataValue }) => {
             setMonthStartDay('');
             localStorage.removeItem('monthStartDay');
         }
-    
+
         setTimeout(() => {
             window.location.reload();
         }, 1000); // 1 Second Delay
@@ -118,7 +119,8 @@ export const GraphComponent: React.FC<GraphProps> = ({ dataValue }) => {
     return (
         <>
             <Line options={options} data={data} />
-            <input type='number' value={monthStartDay} onChange={e => handleMonthStartDayChange(e.target.value)} />
+            <InputTextComponent title='Starting month day' value={monthStartDay}
+                onChange={handleMonthStartDayChange} />
         </>
     );
 };
