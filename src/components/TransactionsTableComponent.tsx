@@ -11,7 +11,7 @@ interface TransactionsTableComponentProps {
 }
 
 export const TransactionsTableComponent: React.FC<TransactionsTableComponentProps> = ({ list, deleteAction }) => {
-
+  
   return (
     <div>
       <table className="table-component">
@@ -49,7 +49,7 @@ export const TransactionsTableComponent: React.FC<TransactionsTableComponentProp
                   textOverflow: 'ellipsis'
                 }}> {LanguageService.categoryNameToItalian(transaction.category)} </div>
               </td>
-              <td>{transaction.date.toDateString()}</td>
+              <td>{transaction.date.toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' })}</td>
               <td><button className="button-elimina" onClick={e => deleteAction(index)}>Delete</button>
               </td>
             </tr>

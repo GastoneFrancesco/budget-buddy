@@ -38,7 +38,7 @@ export const CategoriesTableComponent: React.FC<CategoriesTableComponentProps> =
 
     setBalances(updatedBalances);
 
-  }, [transactions]);
+  }, [transactions, categories]);
 
   const handleAmountChange = (categoryName: string, value: number) => {
     const updatedCategories = [...categories];

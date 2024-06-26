@@ -93,15 +93,17 @@ body {
   color: white;
   display: grid;
   grid-template-columns: 1fr auto 1fr;
-  height: 100px;
+  height: 70px;
   position: fixed;
   width: 100%;
+  font-size: 12px;
 }
 
 .footer-center {
   align-items: center;
   display: flex;
   flex-direction: column;
+  margin-top: -10px;
 }
 
 .footer-left {
@@ -241,16 +243,6 @@ body {
   .button {
     height: 20px;
     width: 60px;
-  }
-
-  .footer-container {
-    font-size: 10px;
-    height: 70px;
-  }
-  
-  .footer-left,
-  .footer-right {
-    margin: auto 10px;
   }
 
 }
