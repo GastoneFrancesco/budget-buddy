@@ -74,8 +74,7 @@ export const CategoriesTableComponent: React.FC<CategoriesTableComponentProps> =
                     <div style={{
                       color: category.color,
                       backgroundColor: CategoryService.lightenColor(category.color),
-                      paddingInline: 10,
-                      borderRadius: 10,
+                      borderRadius: 5,
                       fontWeight: 600,
                       display: 'flex',
                       justifyContent: 'center',
@@ -83,7 +82,8 @@ export const CategoriesTableComponent: React.FC<CategoriesTableComponentProps> =
                       textAlign: 'center',
                       whiteSpace: 'nowrap',
                       overflow: 'hidden',
-                      textOverflow: 'ellipsis'
+                      textOverflow: 'ellipsis',
+                      height: 30
                     }}> {LanguageService.categoryNameToItalian(category.name)} </div>
                   </td>
                   <td>{category.budgetAmount + balances[index]} €</td>

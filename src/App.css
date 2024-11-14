@@ -218,6 +218,12 @@ body {
   text-align: left;
 }
 
+.footer-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 @media (max-width: 1000px) {
   .container {
     flex-direction: column;

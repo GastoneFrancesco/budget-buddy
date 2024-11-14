@@ -26,7 +26,7 @@ export const AddTransactionComponent: React.FC<AddTransactionComponentProps> = (
 
         const newTransaction: Transaction = {
             description: description,
-            amount: category === 'Income' ? amount : -amount,
+            amount: category === 'Income' ? +amount : -amount,
             category: category,
             date: parsedDate
         };

@@ -38,11 +38,11 @@ export const HomePageComponent: React.FC = () => {
     }
 
     const deleteFromTransactions = (indexToRemove: number) => {
-        setTransactionArray(currentTransaction => {
-            const updatedTransactions = currentTransaction.filter((_, index) => index !== indexToRemove);
-            localStorage.setItem('transactionArray', JSON.stringify(updatedTransactions));
-            return updatedTransactions;
-        });
+        transactionArray.splice(indexToRemove, 1); 
+        //Creo una nuova lista, cosi che react riconosca il cambiamento 
+        let updatedTransaction = [... transactionArray] 
+        setTransactionArray(updatedTransaction);
+        localStorage.setItem('transactionArray', JSON.stringify(updatedTransaction))
     };
 
     return (
