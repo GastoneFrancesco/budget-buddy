@@ -4,7 +4,6 @@ import { TransactionDescriptionComponent } from "./TransactionDescriptionCompone
 import { DefaultCategories } from "../config/DefaultCategories";
 import { CategoryService } from "../services/CategoryService";
 import { LanguageService } from "../services/LanguageService";
-import { log } from "console";
 
 interface TransactionsTableComponentProps {
   list: Transaction[];
